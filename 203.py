@@ -26,11 +26,23 @@
 #a,b,*rest = range(5)
 #print(rest)     # [2,3,4]
 
-#创建具名元组
+#创建具名元组,这个具名元组其实是一个类
 from collections import namedtuple
 City = namedtuple('City','name country population coordinates')
 tokyo = City('Tokyo' ,'JP' ,36.933,(35.4598,139.3344))
-print(tokyo)
+#print(tokyo.population)
+#print(tokyo)
+#具名元组拥有_fields类属性，_make(iterable)类方法,_asdict()实例方法
+print(City._fields)
+LatLong = namedtuple('LatLong','lat long')#经纬度的具名元组
+delhi_data = ('Delhi NCR','IN',21.935, LatLong(28.613889,77.208889))
+delhi = City._make(delhi_data)#make 接受一个可迭代的对象来生成类的实例
+delhi = City(*delhi_data) #作用与上面相同
+print(delhi._asdict())#使用asdict将元组里的信息友好的呈现出来
+
+
+
+
 
 
 
